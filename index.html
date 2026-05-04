@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Estudio PMP — Juan Carlos Castillo</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #2e7d9e;
+    --light-bg: #f4f7fb;
+    --border: #d0dce8;
+    --text: #1e2a38;
+    --muted: #5a6a7a;
+    --pmbok-color: #1a3a5c;
+    --agile-color: #1a6b4a;
+    --warning: #8a5a00;
+    --warning-bg: #fffbea;
+    --tip-bg: #eaf4f0;
+    --tip-border: #1a6b4a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: var(--text);
+    background: #fff;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 260px;
+    height: 100vh;
+    background: var(--primary);
+    overflow-y: auto;
+    padding: 0 0 40px 0;
+    z-index: 100;
+  }
+  .sidebar-header {
+    background: #0e2540;
+    padding: 20px 18px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .sidebar-header h2 {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .sidebar-header span {
+    color: #a8c4d8;
+    font-size: 12px;
+  }
+  .sidebar nav ul {
+    list-style: none;
+    padding: 12px 0;
+  }
+  .sidebar nav ul li a {
+    display: block;
+    color: #b8d0e8;
+    text-decoration: none;
+    padding: 7px 18px;
+    font-size: 13px;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .sidebar nav ul li a:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border-left-color: var(--accent);
+  }
+  .sidebar nav ul li a.phase {
+    color: #7db8d8;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 14px 18px 4px;
+    pointer-events: none;
+  }
+  /* MAIN */
+  .main {
+    margin-left: 260px;
+    padding: 0 0 80px 0;
+  }
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #0e4d7a 100%);
+    color: #fff;
+    padding: 48px 60px;
+  }
+  .hero h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .hero p { color: #a8c4d8; font-size: 15px; }
+  .hero .meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .hero .meta-item {
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+  .hero .meta-item strong { display: block; font-size: 18px; color: #fff; }
+  .content { padding: 0 60px; }
+  /* SECTIONS */
+  .week-section {
+    margin-top: 52px;
+    scroll-margin-top: 20px;
+  }
+  .week-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .week-badge {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    min-width: 74px;
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+  .week-badge.phase0 { background: #555; }
+  .week-badge.phase1 { background: #1a5c8a; }
+  .week-badge.phase2 { background: #6b3a1a; }
+  .week-badge.phase3 { background: #1a4a6b; }
+  .week-badge.exam { background: #1a6b2a; }
+  .week-title h2 { font-size: 20px; color: var(--primary); font-weight: 700; }
+  .week-title p { color: var(--muted); font-size: 14px; margin-top: 3px; }
+  .hours-tag {
+    display: inline-block;
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 12px;
+    font-size: 12px;
+    color: var(--muted);
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    background: #fff;
+  }
+  .card.pmbok { border-top: 3px solid var(--pmbok-color); }
+  .card.agile { border-top: 3px solid var(--agile-color); }
+  .card h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .card.pmbok h3 { color: var(--pmbok-color); }
+  .card.agile h3 { color: var(--agile-color); }
+  .card ul { padding-left: 16px; }
+  .card ul li { margin-bottom: 6px; font-size: 14px; line-height: 1.5; }
+  .card ul li strong { color: var(--text); }
+  .full-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    background: #fff;
+    margin-bottom: 16px;
+  }
+  .full-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+  .full-card ul { padding-left: 18px; }
+  .full-card ul li { margin-bottom: 7px; font-size: 14px; line-height: 1.5; }
+  /* TIPS */
+  .tip {
+    background: var(--tip-bg);
+    border-left: 4px solid var(--tip-border);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .tip strong { color: var(--tip-border); }
+  .warning {
+    background: var(--warning-bg);
+    border-left: 4px solid var(--warning);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .warning strong { color: var(--warning); }
+  /* TABLE */
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin: 16px 0;
+  }
+  .ref-table th {
+    background: var(--light-bg);
+    padding: 9px 14px;
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+  }
+  .ref-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table tr:hover td { background: var(--light-bg); }
+  /* EXAM BOX */
+  .exam-box {
+    background: linear-gradient(135deg, #1a6b2a 0%, #0e4a1a 100%);
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-top: 40px;
+  }
+  .exam-box h2 { font-size: 20px; margin-bottom: 12px; }
+  .exam-box p { color: #a8e0b8; margin-bottom: 8px; font-size: 14px; }
+  .exam-box ul { padding-left: 18px; }
+  .exam-box ul li { color: #a8e0b8; margin-bottom: 6px; font-size: 14px; }
+  /* PHASE DIVIDER */
+  .phase-divider {
+    margin: 50px 0 0 0;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+  }
+  .phase-divider h2 {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  /* FORMULA BOX */
+  .formula-box {
+    background: #1e2a38;
+    color: #a8d8f0;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+  }
+  /* DOMAIN PILLS */
+  .domain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .domain-pill {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13.5px;
+  }
+  .domain-pill strong { display: block; color: var(--primary); font-size: 13px; margin-bottom: 4px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .card-grid, .two-col { grid-template-columns: 1fr; }
+    .content { padding: 0 24px; }
+    .hero { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h2>📋 Plan de Estudio PMP</h2>
+    <span>Juan Carlos Castillo · 14 semanas</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a class="phase" href="#">— FASE 0: Trámites —</a></li>
+      <li><a href="#semana-0">Sem. 0 · Aplicación PMI</a></li>
+      <li><a class="phase" href="#">— FASE 1: Base (Sem. 1–4) —</a></li>
+      <li><a href="#semana-1">Sem. 1 · Estándar + Intro PMBOK8</a></li>
+      <li><a href="#semana-2">Sem. 2 · Principios + Ciclos de Vida</a></li>
+      <li><a href="#semana-3">Sem. 3 · Intro Ágil + Manifiesto</a></li>
+      <li><a href="#semana-4">Sem. 4 · Selección de Ciclo de Vida</a></li>
+      <li><a class="phase" href="#">— FASE 2: Dominios (Sem. 5–10) —</a></li>
+      <li><a href="#semana-5">Sem. 5 · Gobernanza + Alcance</a></li>
+      <li><a href="#semana-6">Sem. 6 · Cronograma + Finanzas</a></li>
+      <li><a href="#semana-7">Sem. 7 · Interesados + Recursos</a></li>
+      <li><a href="#semana-8">Sem. 8 · Riesgos + Adaptación</a></li>
+      <li><a href="#semana-9">Sem. 9 · Ágil Profundo (Scrum/Kanban)</a></li>
+      <li><a href="#semana-10">Sem. 10 · Herramientas y Técnicas</a></li>
+      <li><a class="phase" href="#">— FASE 3: Repaso (Sem. 11–13) —</a></li>
+      <li><a href="#semana-11">Sem. 11 · Adquisiciones + EVM</a></li>
+      <li><a href="#semana-12">Sem. 12 · Repaso y Zonas Débiles</a></li>
+      <li><a href="#semana-13">Sem. 13 · Simulacros Completos</a></li>
+      <li><a class="phase" href="#">— SEMANA 14: EXAMEN —</a></li>
+      <li><a href="#semana-14">Sem. 14 · Día del Examen</a></li>
+      <li><a class="phase" href="#">— REFERENCIAS —</a></li>
+      <li><a href="#ref-rapida">Referencia Rápida</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+  <div class="hero">
+    <h1>Guía de Estudio PMP — Basada en tus documentos oficiales</h1>
+    <p>PMBOK® Guide 8ª Ed. (2025) + Guía Práctica de Ágil · Plan de 14 semanas · 16h/semana</p>
+    <div class="meta">
+      <div class="meta-item"><strong>14</strong>semanas</div>
+      <div class="meta-item"><strong>~224h</strong>de estudio</div>
+      <div class="meta-item"><strong>180</strong>preguntas en el examen</div>
+      <div class="meta-item"><strong>50%</strong>Ágil / 50% Predictivo</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ADVERTENCIA CLAVE -->
+    <div style="margin-top:28px;">
+    <div class="warning">
+      <strong>⚠️ Lo más importante que tienes que saber antes de empezar:</strong> El examen PMP no mide memorización. Mide razonamiento situacional. Cada pregunta te pone en un escenario y tienes que elegir qué haría un buen PM según el criterio de PMI. Tu experiencia de 11 años es una ventaja real, pero tu tendencia Waterfall puede jugarte en contra en preguntas ágiles. Estudia para razonar, no para recordar definiciones.
+    </div>
+    </div>
+
+    <!-- FASE 0 -->
+    <div class="phase-divider" id="semana-0">
+      <h2>Fase 0 — Trámites y Aplicación</h2>
+    </div>
+
+    <div class="week-section">
+      <div class="week-header">
+        <div class="week-badge phase0">FASE 0<br>Paralelo</div>
+        <div class="week-title">
+          <h2>Aplicación PMI y documentos de referencia <span class="hours-tag">~4h total</span></h2>
+          <p>Haz esto mientras empiezas a estudiar. No esperes a tenerlo todo perfecto.</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>Pasos concretos esta semana</h3>
+        <ul>
+          <li><strong>Rellena la aplicación en PMI.org</strong> → Certifications → PMP → Apply. Documenta tu experiencia por proyectos (no por años): nombre del proyecto, tu rol, fechas, horas liderando y descripción breve.</li>
+          <li><strong>Descarga ya</strong> (ya lo tienes): PMBOK 8ª Ed. ✅ · Guía Práctica de Ágil ✅</li>
+          <li><strong>Descarga el ECO (Exam Content Outline)</strong> en PMI.org — gratis, sin membresía. Este documento define exactamente qué temas tiene el examen. Léelo antes de empezar a estudiar.</li>
+          <li><strong>El ECO divide el examen en 3 dominios:</strong> People (~42%), Process (~50%), Business Environment (~8%). Ágil y enfoques híbridos aparecen en los tres.</li>
+          <li><strong>Coste total estimado:</strong> Membresía PMI $139/año ✅ ya pagado · Examen $405 (miembro) · Curso Udemy ~$15-20 · PM PrepCast Simulator ~$90</li>
+        </ul>
+      </div>
+      <div class="tip">
+        <strong>💡 Sobre la auditoría:</strong> PMI hace auditorías aleatorias. Ten listos los nombres y contactos de supervisores que puedan confirmar tu experiencia en los proyectos que incluyas en la aplicación.
+      </div>
+    </div>
+
+    <!-- FASE 1 -->
+    <div class="phase-divider">
+      <h2>Fase 1 — Base Conceptual (Semanas 1–4)</h2>
+    </div>
+
+    <!-- SEMANA 1 -->
+    <div class="week-section" id="semana-1">
+      <div class="week-header">
+        <div class="week-badge phase1">SEM. 1<br>16h</div>
+        <div class="week-title">
+          <h2>El Estándar para la Dirección de Proyectos — Conceptos Fundamentales</h2>
+          <p>PMBOK® 8ª Ed. · Parte I: El Estándar · Secciones 1 y 2 completas</p>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="card pmbok">
+          <h3>📘 PMBOK 8ª Ed. — Sección 1: Introducción</h3>
+          <ul>
+            <li><strong>Propósito del estándar:</strong> Base común aplicable a cualquier industria, metodología o tamaño. No es prescriptivo: describe el sistema dentro del que operan los proyectos.</li>
+            <li><strong>Definición actualizada de proyecto:</strong> "Iniciativa temporal en un contexto único que se emprende para crear valor." Énfasis en valor, no solo entregables.</li>
+            <li><strong>Dirección de proyectos:</strong> "Aplicación de conocimientos, habilidades, herramientas y técnicas para satisfacer o superar el valor previsto." No es gestión de restricciones, es entrega de valor.</li>
+            <li><strong>Sistema de entrega de valor:</strong> Los proyectos forman parte de un sistema mayor — portafolios → programas → proyectos → operaciones.</li>
+          </ul>
+        </div>
+        <div class="card pmbok">
+          <h3>📘 Términos Clave que Saldrán en el Examen</h3>
+          <ul>
+            <li><strong>Artefacto:</strong> Cualquier documento o elemento creado para gestionar el proyecto o informar al equipo.</li>
+            <li><strong>Beneficio:</strong> Ganancia realizada por la organización o interesados gracias a los resultados entregados.</li>
+            <li><strong>Resultado:</strong> Efecto final del proyecto, puede ser positivo (beneficio) o negativo (beneficio negativo).</li>
+            <li><strong>Valor:</strong> Exceso de beneficios (financieros y no financieros) sobre la inversión.</li>
+            <li><strong>PMO:</strong> Entidad que centraliza actividades de dirección de portafolios, programas y/o proyectos.</li>
+            <li><strong>Portafolio:</strong> Conjunto de programas, proyectos y operaciones gestionados para maximizar valor y alcanzar objetivos estratégicos.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 PMBOK — Sección 2: Sistema para la Entrega de Valor</h3>
+        <ul>
+          <li><strong>Creación de valor:</strong> Los proyectos crean valor tangible (activos monetarios, productividad, cuota de mercado, infraestructura) e intangible (marca, reputación, conocimiento, bienestar del personal, cumplimiento).</li>
+          <li><strong>Éxito del proyecto (nueva definición):</strong> "Opinión consensuada entre los beneficiarios previstos, otros interesados y participantes de que el proyecto aportó un valor que justificó el esfuerzo y los gastos." — Ya no es solo tiempo + coste + alcance.</li>
+          <li><strong>Entorno del proyecto:</strong> Factores Ambientales de la Empresa (EEF) — externos a la organización (regulaciones, mercado, clima) e internos (cultura, infraestructura, recursos). Activos de Procesos Organizacionales (OPA) — políticas, procedimientos, bases de datos históricas.</li>
+          <li><strong>Roles en el sistema de entrega de valor:</strong> Director/a del proyecto, Equipo de dirección, Equipo de proyecto, Patrocinador/a, Clientes/Dueños de producto, Interesados finales.</li>
+          <li><strong>Estructuras organizacionales y su impacto:</strong> Funcional (PM con poco poder) → Matricial débil, equilibrada, fuerte → Orientada a proyectos (PM con máximo poder). Tu empresa SaaS probablemente sea matricial o proyectizada — esto afecta cómo aplicas la autoridad como PM.</li>
+        </ul>
+      </div>
+      <div class="tip">
+        <strong>🎯 Para el examen:</strong> Cuando una pregunta mencione el éxito del proyecto, recuerda que para PMI el éxito va más allá del triángulo de hierro (alcance-tiempo-costo). Un proyecto "a tiempo y en presupuesto" que no entregó valor al cliente no es un éxito para PMI.
+      </div>
+    </div>
+
+    <!-- SEMANA 2 -->
+    <div class="week-section" id="semana-2">
+      <div class="week-header">
+        <div class="week-badge phase1">SEM. 2<br>16h</div>
+        <div class="week-title">
+          <h2>Los 6 Principios + Ciclos de Vida del Proyecto</h2>
+          <p>PMBOK® 8ª Ed. · Parte I: Secciones 3 y 4 completas</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Los 6 Principios de la Dirección de Proyectos (PMBOK 8ª Ed.)</h3>
+        <p style="margin-bottom:12px; font-size:14px; color:var(--muted);">En la 8ª edición, los 12 principios de la 7ª se simplificaron en 6 principios más prácticos. Estos guían el comportamiento del PM, no son procesos ni pasos.</p>
+        <div class="domain-grid">
+          <div class="domain-pill">
+            <strong>1. Adoptar una visión holística</strong>
+            Los proyectos existen dentro de sistemas más amplios. El PM debe entender el contexto organizacional, no solo el proyecto en sí. Reconocer impactos internos y externos.
+          </div>
+          <div class="domain-pill">
+            <strong>2. Centrarse en el valor</strong>
+            El objetivo último es entregar valor, no solo completar tareas. Alinear continuamente el proyecto con los objetivos estratégicos. La entrega de valor justifica el esfuerzo.
+          </div>
+          <div class="domain-pill">
+            <strong>3. Incorporar la calidad en los procesos y entregables</strong>
+            La calidad no se inspecciona al final, se construye durante el proceso. Aplica tanto a procesos (cómo trabajamos) como a entregables (qué producimos).
+          </div>
+          <div class="domain-pill">
+            <strong>4. Liderar con responsabilidad</strong>
+            El PM lidera con integridad, ética y responsabilidad. Rinde cuentas ante el equipo y los interesados. Promueve un ambiente seguro y confiable.
+          </div>
+          <div class="domain-pill">
+            <strong>5. Integrar la sostenibilidad en todas las áreas</strong>
+            Nuevo en la 8ª edición. Los proyectos deben considerar el impacto social, ambiental y económico a largo plazo. La pirámide de sostenibilidad: económico → social → ambiental.
+          </div>
+          <div class="domain-pill">
+            <strong>6. Construir una cultura de empoderamiento</strong>
+            Crear condiciones para que el equipo tome decisiones, asuma responsabilidades y crezca. El PM facilita y apoya, no controla y dicta.
+          </div>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Ciclos de Vida del Proyecto (PMBOK 8ª Ed. — Sección 4)</h3>
+        <ul>
+          <li><strong>Ciclo de vida predictivo (Waterfall):</strong> Planificación detallada al inicio, ejecución secuencial, entrega única al final. Ideal cuando los requisitos son claros y estables. Tu zona de confort de 11 años.</li>
+          <li><strong>Ciclo de vida adaptativo (Ágil):</strong> Iteraciones cortas, entrega frecuente de valor, requisitos dinámicos. El equipo aprende y ajusta continuamente. ~50% del examen.</li>
+          <li><strong>Ciclo de vida híbrido:</strong> Combina elementos predictivos y adaptativos según la naturaleza de cada componente del proyecto. Por ejemplo: planificación predictiva + entrega iterativa.</li>
+          <li><strong>Cadencia de entrega:</strong> Única (predictivo), periódica (incremental), continua (Kanban). La frecuencia de entrega afecta cómo se gestiona el proyecto.</li>
+          <li><strong>5 Áreas de Enfoque (reintroducción de los grupos de proceso):</strong> Iniciación → Planificación → Ejecución → Monitoreo y Control → Cierre. En la 8ª ed. se presentan como áreas de enfoque, no como procesos rígidos, porque cada proyecto las aborda de forma diferente según su ciclo de vida.</li>
+        </ul>
+      </div>
+      <div class="warning">
+        <strong>⚠️ Trampa frecuente en el examen:</strong> Para PMI, que uses un ciclo de vida predictivo no significa que no puedas adaptarte. El PM siempre evalúa si el enfoque elegido sigue siendo el más adecuado. Una pregunta puede preguntarte si deberías cambiar de predictivo a ágil ante determinadas circunstancias — la respuesta casi siempre es "sí, si el contexto lo justifica."
+      </div>
+    </div>
+
+    <!-- SEMANA 3 -->
+    <div class="week-section" id="semana-3">
+      <div class="week-header">
+        <div class="week-badge phase1">SEM. 3<br>16h</div>
+        <div class="week-title">
+          <h2>Introducción a Ágil — Mentalidad, Manifiesto y Lean</h2>
+          <p>Guía Práctica de Ágil · Secciones 1, 2 y 3 (primeras partes)</p>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="card agile">
+          <h3>🟢 Trabajo Definible vs. Alta Incertidumbre</h3>
+          <ul>
+            <li><strong>Trabajo definible:</strong> Procedimientos claros, probados, bajo riesgo de ejecución. Ej: construir un coche según especificación. Funciona bien con predictivo.</li>
+            <li><strong>Alta incertidumbre:</strong> Exploratorio, requisitos cambiantes, necesidad de colaboración experta. Ej: nuevo producto SaaS, desarrollo de software nuevo. Requiere enfoques adaptativos.</li>
+            <li><strong>Tu contexto SaaS/MarTech:</strong> Aunque has usado Waterfall, los proyectos de producto digital suelen tener alta incertidumbre. Reconocer esto te ayudará a responder escenarios del examen.</li>
+          </ul>
+        </div>
+        <div class="card agile">
+          <h3>🟢 Los 4 Valores del Manifiesto Ágil (2001)</h3>
+          <ul>
+            <li><strong>Individuos e interacciones</strong> más que procesos y herramientas</li>
+            <li><strong>Software que funcione</strong> más que documentación completa</li>
+            <li><strong>Colaboración con el cliente</strong> más que negociación del contrato</li>
+            <li><strong>Responder al cambio</strong> más que seguir un plan</li>
+            <li style="list-style:none; margin-top:8px; font-style:italic; color:var(--muted);">⚠️ PMI siempre puntualiza: los elementos de la derecha tienen valor, pero se valoran más los de la izquierda.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>🟢 Los 12 Principios del Manifiesto Ágil — Memoríza los conceptos, no la numeración</h3>
+        <div class="two-col">
+          <ul>
+            <li>Satisfacción del cliente mediante entrega temprana y continua de valor</li>
+            <li>Los cambios a los requisitos son bienvenidos, incluso en etapas avanzadas</li>
+            <li>Entregar software funcional con frecuencia (semanas, no meses)</li>
+            <li>Negocio y desarrolladores trabajan juntos todos los días</li>
+            <li>Proyectos alrededor de individuos motivados con entorno y apoyo</li>
+            <li>La conversación cara a cara es el método más eficiente de comunicación</li>
+          </ul>
+          <ul>
+            <li>El software que funciona es la medida principal de progreso</li>
+            <li>Los procesos ágiles promueven el desarrollo sostenible y ritmo constante</li>
+            <li>Atención continua a la excelencia técnica y el buen diseño</li>
+            <li>La simplicidad: maximizar la cantidad de trabajo no realizado (YAGNI)</li>
+            <li>Las mejores arquitecturas surgen de equipos auto-organizados</li>
+            <li>A intervalos regulares, el equipo reflexiona y ajusta su comportamiento</li>
+          </ul>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>🟢 Lean, Ágil y Kanban — La relación entre los tres</h3>
+        <ul>
+          <li><strong>Pensamiento Lean (Toyota Production System):</strong> Eliminar desperdicios, flujo continuo de valor, respeto por las personas, mejora continua (Kaizen). Es el "padre" conceptual de Ágil y Kanban.</li>
+          <li><strong>Ágil</strong> es un término genérico que engloba marcos como Scrum, XP, DSDM, Crystal, FDD. Todos comparten los valores y principios del Manifiesto.</li>
+          <li><strong>Método Kanban:</strong> Menos prescriptivo que Scrum. Visualiza el flujo de trabajo, limita el WIP (Work In Progress), mejora el flujo de forma continua. No requiere iteraciones fijas. Ideal para empezar sin disrupciones ("comenzar con lo que se hace ahora").</li>
+          <li><strong>Para el examen:</strong> Kanban y Scrum son los marcos que más aparecen. Debes saber sus diferencias: Scrum tiene sprints, roles fijos y ceremonias. Kanban tiene tablero visual, límites de WIP y flujo continuo.</li>
+        </ul>
+      </div>
+      <div class="tip">
+        <strong>💡 Mentalidad clave:</strong> Ágil es una mentalidad (definida por valores y principios) que se manifiesta a través de prácticas. No es solo "hacer sprints". El examen mide si entiendes la mentalidad, no si sabes ejecutar Scrum mecánicamente.
+      </div>
+    </div>
+
+    <!-- SEMANA 4 -->
+    <div class="week-section" id="semana-4">
+      <div class="week-header">
+        <div class="week-badge phase1">SEM. 4<br>16h</div>
+        <div class="week-title">
+          <h2>Selección del Ciclo de Vida e Implementación Ágil</h2>
+          <p>Guía Práctica de Ágil · Secciones 3, 4 y 5 completas</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>🟢 Los 4 Tipos de Ciclo de Vida según la Guía Práctica de Ágil</h3>
+        <table class="ref-table">
+          <thead>
+            <tr><th>Ciclo de Vida</th><th>Requisitos</th><th>Actividades</th><th>Entrega</th><th>Meta Principal</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Predictivo (Waterfall)</strong></td><td>Fijos desde el inicio</td><td>Una vez para todo el proyecto</td><td>Entrega única al final</td><td>Gestionar costes</td></tr>
+            <tr><td><strong>Iterativo</strong></td><td>Dinámicos</td><td>Repetidos hasta que esté correcto</td><td>Entrega única mejorada</td><td>Corrección de la solución</td></tr>
+            <tr><td><strong>Incremental</strong></td><td>Dinámicos</td><td>Una vez por incremento</td><td>Entregas frecuentes más pequeñas</td><td>Velocidad de entrega</td></tr>
+            <tr><td><strong>Ágil</strong></td><td>Dinámicos</td><td>Repetidos hasta que esté correcto</td><td>Entregas pequeñas y frecuentes</td><td>Valor para el cliente</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-grid">
+        <div class="card agile">
+          <h3>🟢 Filtros de Idoneidad para Ágil</h3>
+          <ul>
+            <li>Alta tasa de cambio en requisitos</li>
+            <li>Necesidad de entrega temprana de valor</li>
+            <li>Poca claridad inicial en los requisitos</li>
+            <li>Clientes que pueden dar retroalimentación frecuente</li>
+            <li>Equipo pequeño, co-localizado o disponible para colaborar</li>
+            <li>Cultura organizacional que tolera la ambigüedad</li>
+          </ul>
+        </div>
+        <div class="card agile">
+          <h3>🟢 Cuándo usar Predictivo</h3>
+          <ul>
+            <li>Requisitos claros, completos y estables desde el inicio</li>
+            <li>Baja probabilidad de cambios significativos</li>
+            <li>Entregables físicos o de manufactura (puente, edificio)</li>
+            <li>Regulaciones estrictas que exigen documentación completa</li>
+            <li>El cliente no puede involucrarse de forma continua</li>
+            <li>Equipo distribuido con poca comunicación síncrona</li>
+          </ul>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>🟢 Implementar un Entorno Ágil (Sección 4 de la Guía)</h3>
+        <ul>
+          <li><strong>Liderazgo de servicio (Servant Leadership):</strong> El PM en Ágil no controla, facilita. Protege al equipo de interrupciones, elimina obstáculos, proporciona recursos y apoyo. Este es el cambio mental más importante si vienes del mundo Waterfall.</li>
+          <li><strong>Roles en Ágil:</strong> Product Owner (dueño del backlog, prioriza el valor), Scrum Master/Facilitador (elimina impedimentos, protege al equipo), Equipo de Desarrollo (auto-organizado, multidisciplinar).</li>
+          <li><strong>Especialistas generalizados (T-shaped):</strong> Los miembros del equipo ágil tienen profundidad en un área pero pueden colaborar en otras. Contrasta con la especialización pura del Waterfall.</li>
+          <li><strong>Equipos dedicados:</strong> En Ágil, los miembros del equipo trabajan en un solo proyecto a tiempo completo. La multitarea reduce la productividad y aumenta el desperdicio.</li>
+          <li><strong>El PM tradicional en un entorno ágil:</strong> Cambia de gestionar al equipo a facilitar el equipo. Más coaching, menos dirección; más transparencia, menos control.</li>
+        </ul>
+      </div>
+      <div class="full-card">
+        <h3>🟢 Prácticas Ágiles Comunes (Sección 5 de la Guía)</h3>
+        <ul>
+          <li><strong>Retrospectivas:</strong> Al final de cada iteración, el equipo reflexiona sobre qué salió bien, qué mejorar y cómo. Es la práctica de mejora continua ágil por excelencia.</li>
+          <li><strong>Refinamiento del Backlog:</strong> El equipo revisa y prioriza regularmente el backlog. Las historias de usuario se estiman, se aclaran y se ordenan por valor.</li>
+          <li><strong>Daily Standup (reunión diaria de pie):</strong> 15 minutos. Cada miembro: ¿Qué hice ayer? ¿Qué haré hoy? ¿Qué impedimentos tengo? No es una reunión de status para el PM, es sincronización del equipo.</li>
+          <li><strong>Demos/Reviews:</strong> Al final de cada iteración, el equipo muestra el trabajo completado a los interesados. El objetivo es obtener retroalimentación real del cliente.</li>
+          <li><strong>Planificación de la iteración (Sprint Planning):</strong> El equipo selecciona elementos del backlog para el sprint y planifica cómo completarlos.</li>
+          <li><strong>Métricas ágiles:</strong> Velocity (puntos de historia completados por sprint), Burndown chart (trabajo pendiente), Burnup chart (trabajo completado), Lead time/Cycle time (Kanban).</li>
+        </ul>
+      </div>
+      <div class="tip">
+        <strong>💡 Dato del examen:</strong> El examen te preguntará frecuentemente sobre el rol del PM en entornos ágiles. La respuesta casi siempre involucra: facilitar, eliminar impedimentos, coaching, o proteger al equipo. Si la opción dice "el PM debe controlar el trabajo del equipo", esa nunca es la correcta en contextos ágiles.
+      </div>
+    </div>
+
+    <!-- FASE 2 -->
+    <div class="phase-divider">
+      <h2>Fase 2 — Dominios de Desempeño (Semanas 5–10)</h2>
+    </div>
+
+    <!-- SEMANA 5 -->
+    <div class="week-section" id="semana-5">
+      <div class="week-header">
+        <div class="week-badge phase2">SEM. 5<br>16h</div>
+        <div class="week-title">
+          <h2>Dominio de Gobernanza + Dominio de Alcance</h2>
+          <p>PMBOK® 8ª Ed. · Parte II: Secciones 2.1 y 2.2</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Dominio de Gobernanza (2.1)</h3>
+        <ul>
+          <li><strong>Gobernanza del proyecto:</strong> Marco adaptable que guía las actividades del proyecto para crear valor en consonancia con los objetivos organizacionales. Incluye estructura, sistemas, roles, responsabilidades y modelos de toma de decisiones.</li>
+          <li><strong>Procesos clave del dominio:</strong>
+            <ul style="margin-top:8px;">
+              <li><em>Iniciar el proyecto o fase:</em> Desarrollar el Acta de Constitución (Project Charter). Autoriza formalmente el proyecto, designa al PM y define los límites del proyecto.</li>
+              <li><em>Integrar y alinear los planes del proyecto:</em> Plan para la Dirección del Proyecto (PMP) — documento integrador de todos los planes subsidiarios.</li>
+              <li><em>Gestionar la ejecución:</em> Dirigir y gestionar el trabajo según el plan, gestionar cambios e incidentes.</li>
+              <li><em>Monitorear y controlar el desempeño:</em> Comparar rendimiento real con línea base. Generar informes de desempeño.</li>
+              <li><em>Evaluar e implementar cambios:</em> Control Integrado de Cambios. Evaluar impacto, aprobar o rechazar solicitudes, actualizar documentos.</li>
+              <li><em>Cerrar el proyecto o fase:</em> Formalizar la aceptación, liberar recursos, documentar lecciones aprendidas, archivar registros.</li>
+            </ul>
+          </li>
+          <li><strong>Modelo de gobernanza:</strong> El Comité de Dirección supervisa hitos críticos. La gobernanza define quién toma qué decisiones y cuándo.</li>
+          <li><strong>Matriz RACI:</strong> Responsable, Accountable (rendición de cuentas), Consultado, Informado. Herramienta clave para definir roles y responsabilidades en la gobernanza.</li>
+        </ul>
+      </div>
+      <div class="full-card">
+        <h3>📘 Dominio de Alcance (2.2)</h3>
+        <ul>
+          <li><strong>Alcance del producto vs. alcance del proyecto:</strong> El alcance del producto define las características del entregable. El alcance del proyecto define el trabajo necesario para producirlo.</li>
+          <li><strong>Procesos del dominio del alcance:</strong>
+            <ul style="margin-top:8px;">
+              <li><em>Planificar la gestión del alcance:</em> Cómo definir, validar y controlar el alcance del proyecto.</li>
+              <li><em>Recopilar y analizar requisitos:</em> Identificar las necesidades de los interesados. Herramientas: entrevistas, grupos focales, historias de usuario, prototipos.</li>
+              <li><em>Definir el alcance:</em> Enunciado del alcance del proyecto (Project Scope Statement) — descripción detallada de entregables y criterios de aceptación.</li>
+              <li><em>Desarrollar la estructura del alcance (WBS):</em> Descomposición jerárquica del trabajo en paquetes de trabajo manejables. La WBS no es una lista de tareas, es una descomposición de entregables.</li>
+              <li><em>Monitorear y controlar el alcance:</em> Detectar desviaciones y gestionar la corrupción del alcance (scope creep).</li>
+              <li><em>Validar el alcance:</em> Obtener la aceptación formal de los entregables del cliente.</li>
+            </ul>
+          </li>
+          <li><strong>Scope creep vs. Gold plating:</strong> Scope creep = cambios no controlados al alcance. Gold plating = añadir funcionalidad no solicitada "de regalo". Ambos son problemas para PMI — el PM debe evitar los dos.</li>
+          <li><strong>En ágil:</strong> El alcance se gestiona mediante el Product Backlog. El Product Owner prioriza historias de usuario. El alcance es dinámico y evoluciona con cada sprint.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SEMANA 6 -->
+    <div class="week-section" id="semana-6">
+      <div class="week-header">
+        <div class="week-badge phase2">SEM. 6<br>16h</div>
+        <div class="week-title">
+          <h2>Dominio de Cronograma + Dominio de Finanzas</h2>
+          <p>PMBOK® 8ª Ed. · Parte II: Secciones 2.3 y 2.4</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Dominio de Cronograma (2.3)</h3>
+        <ul>
+          <li><strong>Planificar la gestión del cronograma:</strong> Definir el enfoque para planificar, desarrollar, gestionar y controlar el cronograma.</li>
+          <li><strong>Desarrollar el cronograma — Pasos clave:</strong>
+            <ul style="margin-top:8px;">
+              <li>Definir las actividades (descomponer paquetes de trabajo en actividades)</li>
+              <li>Secuenciar actividades y establecer dependencias (FS, FF, SS, SF)</li>
+              <li>Estimar la duración de cada actividad (estimación análoga, paramétrica, tres puntos)</li>
+              <li>Identificar la ruta crítica (CPM): secuencia más larga de actividades que determina la duración mínima del proyecto</li>
+              <li>Comprimir el cronograma si es necesario: Fast Tracking (paralelizar actividades) o Crashing (añadir recursos)</li>
+            </ul>
+          </li>
+          <li><strong>Holgura (Float/Slack):</strong> Tiempo que puede retrasarse una actividad sin afectar a la fecha de fin del proyecto. Las actividades en la ruta crítica tienen holgura = 0.</li>
+          <li><strong>En ágil:</strong> El cronograma no es un Gantt fijo. El equipo planifica sprint a sprint. La velocity (velocidad) sirve para estimar cuántos sprints faltan para completar el backlog.</li>
+        </ul>
+      </div>
+      <div class="full-card">
+        <h3>📘 Dominio de Finanzas (2.4)</h3>
+        <ul>
+          <li><strong>Planificar la gestión financiera:</strong> Definir cómo se estimarán, presupuestarán y controlarán los costos.</li>
+          <li><strong>Estimar los costos:</strong> Estimación análoga (basada en proyectos similares), paramétrica (modelo matemático), ascendente (suma de paquetes de trabajo), tres puntos (optimista, pesimista, más probable).</li>
+          <li><strong>Desarrollar el presupuesto:</strong> Línea base de costos = suma de los estimados del proyecto + reservas de contingencia. Fondos de gestión = línea base + reservas de gestión.</li>
+          <li><strong>Valor Ganado (EVM) — Lo más técnico del examen:</strong> Sistema de medición del desempeño que integra alcance, cronograma y costos.</li>
+        </ul>
+        <div style="margin-top:14px;">
+          <table class="ref-table">
+            <thead><tr><th>Métrica</th><th>Fórmula</th><th>Interpretación</th></tr></thead>
+            <tbody>
+              <tr><td><strong>PV (Valor Planificado)</strong></td><td>Valor del trabajo planificado a fecha</td><td>¿Qué debería estar hecho?</td></tr>
+              <tr><td><strong>EV (Valor Ganado)</strong></td><td>% completado × BAC</td><td>¿Qué valor se ha entregado realmente?</td></tr>
+              <tr><td><strong>AC (Costo Real)</strong></td><td>Costo real incurrido</td><td>¿Cuánto se ha gastado?</td></tr>
+              <tr><td><strong>CV (Variación del Costo)</strong></td><td>EV − AC</td><td>Positivo = bajo presupuesto ✅</td></tr>
+              <tr><td><strong>SV (Variación del Cronograma)</strong></td><td>EV − PV</td><td>Positivo = adelantado ✅</td></tr>
+              <tr><td><strong>CPI (Índice Desempeño Costo)</strong></td><td>EV / AC</td><td>>1 = eficiente en costos ✅</td></tr>
+              <tr><td><strong>SPI (Índice Desempeño Cronograma)</strong></td><td>EV / PV</td><td>>1 = adelantado en cronograma ✅</td></tr>
+              <tr><td><strong>EAC (Estimado a la Conclusión)</strong></td><td>BAC / CPI (más común)</td><td>¿Cuánto costará todo el proyecto?</td></tr>
+              <tr><td><strong>VAC (Variación a la Conclusión)</strong></td><td>BAC − EAC</td><td>Positivo = bajo presupuesto al final ✅</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="tip">
+        <strong>💡 Memoriza el EVM:</strong> Estas fórmulas aparecerán en el examen. La regla de oro: si EV > AC → bien en costos. Si EV > PV → adelantado en cronograma. Si CPI o SPI > 1 → positivo. Si < 1 → problema.
+      </div>
+    </div>
+
+    <!-- SEMANA 7 -->
+    <div class="week-section" id="semana-7">
+      <div class="week-header">
+        <div class="week-badge phase2">SEM. 7<br>16h</div>
+        <div class="week-title">
+          <h2>Dominio de Interesados + Dominio de Recursos</h2>
+          <p>PMBOK® 8ª Ed. · Parte II: Secciones 2.5 y 2.6</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Dominio de los Interesados / Stakeholders (2.5)</h3>
+        <ul>
+          <li><strong>Identificar a los interesados:</strong> Quién puede afectar o ser afectado por el proyecto. Incluir tanto positivos (promotores) como negativos (opositores). Proceso continuo durante todo el proyecto.</li>
+          <li><strong>Planificar el involucramiento:</strong> Determinar el nivel de participación deseado para cada interesado: Desconocedor → Reticente → Neutral → Partidario → Líder. La meta es moverlos hacia Partidario o Líder cuando es necesario.</li>
+          <li><strong>Planificar las comunicaciones:</strong> ¿Quién necesita qué información? ¿Cuándo? ¿En qué formato? ¿Por qué canal? El Plan de Comunicaciones no es solo un calendario de reuniones.</li>
+          <li><strong>Gestionar el involucramiento:</strong> Comunicar activamente, resolver incidentes, gestionar expectativas. El PM es el principal gestor de relaciones con los interesados.</li>
+          <li><strong>Monitorear el involucramiento:</strong> Verificar que las estrategias de involucramiento siguen siendo efectivas. Ajustar según cambios en los interesados.</li>
+          <li><strong>Herramientas:</strong> Matriz de poder/interés, Registro de interesados, Modelo de prominencia (poder, legitimidad, urgencia), Matriz RACI.</li>
+          <li><strong>En ágil:</strong> El Product Owner es el principal punto de contacto con los interesados. Las demos al final de cada sprint son el mecanismo formal de involucramiento continuo.</li>
+        </ul>
+      </div>
+      <div class="full-card">
+        <h3>📘 Dominio de los Recursos (2.6)</h3>
+        <ul>
+          <li><strong>Planificar la gestión de recursos:</strong> Identificar y documentar roles, responsabilidades, habilidades requeridas y relaciones de reporte. Herramienta: Organigrama del proyecto, Matriz RACI.</li>
+          <li><strong>Estimar los recursos:</strong> ¿Qué personas, equipos y materiales se necesitan? Cuántos y cuándo. Tipos de estimación: análoga, paramétrica, ascendente.</li>
+          <li><strong>Adquirir recursos:</strong> Conseguir los recursos humanos y físicos necesarios. El PM negocia con gerentes funcionales en organizaciones matriciales.</li>
+          <li><strong>Liderar al equipo:</strong> El dominio más "humano". Resolución de conflictos, motivación, coaching, evaluación del desempeño.
+            <ul style="margin-top:6px;">
+              <li><em>Resolución de conflictos — orden de preferencia de PMI:</em> Colaborar/confrontar (ganar-ganar, preferida) → Comprometer → Suavizar → Forzar → Retirar</li>
+              <li><em>Etapas del equipo (Tuckman):</em> Forming → Storming → Norming → Performing → Adjourning</li>
+              <li><em>Teorías de motivación:</em> Maslow (jerarquía de necesidades), Herzberg (factores higiénicos vs. motivadores), McGregor (Teoría X y Y), McClelland (logro, afiliación, poder)</li>
+            </ul>
+          </li>
+          <li><strong>Monitorear y controlar recursos:</strong> Verificar que los recursos se usan eficientemente. Nivelar recursos cuando hay sobreasignación.</li>
+          <li><strong>Inteligencia emocional:</strong> El PMBOK 8ª Ed. incluye explícitamente la IE como competencia del PM. Autoconciencia, gestión propia, conciencia social y gestión de relaciones.</li>
+        </ul>
+      </div>
+      <div class="tip">
+        <strong>💡 Para el examen — Conflictos:</strong> PMI siempre prefiere la resolución colaborativa (win-win). Si una pregunta ofrece "habla directamente con la otra persona para entender el problema y encontrar una solución juntos", esa es casi siempre la respuesta correcta. Imponer una decisión o evitar el conflicto son las peores opciones.
+      </div>
+    </div>
+
+    <!-- SEMANA 8 -->
+    <div class="week-section" id="semana-8">
+      <div class="week-header">
+        <div class="week-badge phase2">SEM. 8<br>16h</div>
+        <div class="week-title">
+          <h2>Dominio de Riesgos + Adaptación del Proyecto</h2>
+          <p>PMBOK® 8ª Ed. · Parte II: Secciones 2.7 y 3</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Dominio de los Riesgos (2.7)</h3>
+        <ul>
+          <li><strong>Riesgo individual vs. riesgo general del proyecto:</strong> El riesgo individual afecta a un objetivo específico. El riesgo general del proyecto (Overall Project Risk) es el efecto de la incertidumbre sobre el proyecto como conjunto.</li>
+          <li><strong>Planificar la gestión de riesgos:</strong> Definir el enfoque y las actividades de gestión de riesgos. Incluye la tolerancia al riesgo de los interesados.</li>
+          <li><strong>Identificar los riesgos:</strong> Proceso continuo. Herramientas: Lluvia de ideas, Técnica Delphi, Lista de verificación, Análisis FODA, Diagrama causa-efecto (Ishikawa), Estructura de Desglose de Riesgos (RBS).</li>
+          <li><strong>Realizar análisis de riesgos:</strong>
+            <ul style="margin-top:6px;">
+              <li><em>Análisis cualitativo:</em> Probabilidad × Impacto → Matriz P×I. Prioriza los riesgos.</li>
+              <li><em>Análisis cuantitativo:</em> Valor Monetario Esperado (EMV = Probabilidad × Impacto $), Análisis Monte Carlo, Árbol de decisiones.</li>
+            </ul>
+          </li>
+          <li><strong>Planificar respuestas a los riesgos:</strong>
+            <ul style="margin-top:6px;">
+              <li><em>Amenazas:</em> Evitar · Transferir · Mitigar · Aceptar (activa o pasiva)</li>
+              <li><em>Oportunidades:</em> Explotar · Compartir · Mejorar · Aceptar</li>
+              <li><em>Escalada:</em> Cuando el riesgo está fuera de la autoridad del PM</li>
+            </ul>
+          </li>
+          <li><strong>Implementar y monitorear respuestas:</strong> Ejecutar los planes de respuesta, dar seguimiento a riesgos identificados, identificar nuevos riesgos.</li>
+          <li><strong>En ágil:</strong> Los riesgos se gestionan continuamente mediante entregas incrementales. El backlog refleja la priorización de riesgos: se trabaja primero lo más incierto o de mayor valor.</li>
+        </ul>
+      </div>
+      <div class="full-card">
+        <h3>📘 Adaptación (Tailoring) — Sección 3 del PMBOK</h3>
+        <ul>
+          <li><strong>Por qué adaptar:</strong> No existe un enfoque único válido para todos los proyectos. El PM adapta el ciclo de vida, los procesos y el nivel de rigor según el contexto del proyecto y la organización.</li>
+          <li><strong>Qué adaptar:</strong> Ciclo de vida y enfoque de desarrollo · Procesos (cuáles usar, a qué profundidad) · Nivel de documentación · Compromisos formales del equipo.</li>
+          <li><strong>El proceso de adaptación:</strong>
+            <ol style="padding-left:18px; margin-top:6px;">
+              <li>Seleccionar el enfoque de desarrollo inicial (predictivo, adaptativo o híbrido)</li>
+              <li>Adaptarlo a la organización (restricciones organizacionales, cultura, regulación)</li>
+              <li>Adaptarlo al proyecto (entregables, equipo, interesados)</li>
+              <li>Implementar mejora continua durante el proyecto</li>
+            </ol>
+          </li>
+          <li><strong>Para el examen:</strong> Si una pregunta pregunta qué debe hacer el PM ante un entorno muy regulado que requiere predictivo, pero el equipo quiere ágil, la respuesta de PMI es: adaptar de forma que se cumplan los requisitos regulatorios y, donde sea posible, incorporar prácticas ágiles (enfoque híbrido).</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SEMANA 9 -->
+    <div class="week-section" id="semana-9">
+      <div class="week-header">
+        <div class="week-badge phase2">SEM. 9<br>16h</div>
+        <div class="week-title">
+          <h2>Ágil Profundo — Scrum, Kanban y Marcos de Referencia</h2>
+          <p>Guía Práctica de Ágil · Sección 6 + Anexo A3 completo</p>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="card agile">
+          <h3>🟢 Scrum — El Marco más Frecuente en el Examen</h3>
+          <ul>
+            <li><strong>Roles:</strong> Product Owner (PO), Scrum Master (SM), Development Team (3-9 personas)</li>
+            <li><strong>Artefactos:</strong> Product Backlog (lista priorizada), Sprint Backlog (trabajo del sprint actual), Increment (producto potencialmente entregable)</li>
+            <li><strong>Ceremonias:</strong> Sprint Planning · Daily Scrum (15 min) · Sprint Review (demo) · Sprint Retrospective</li>
+            <li><strong>Sprint:</strong> 1-4 semanas de duración fija (timebox). No se cambia el alcance durante el sprint.</li>
+            <li><strong>Definition of Done (DoD):</strong> Criterios acordados para considerar una historia como completada.</li>
+            <li><strong>Estimación:</strong> Planning Poker, Story Points, T-shirt sizing</li>
+          </ul>
+        </div>
+        <div class="card agile">
+          <h3>🟢 Kanban — Flujo Continuo</h3>
+          <ul>
+            <li><strong>Principio fundamental:</strong> Visualizar el flujo, limitar el WIP, gestionar el flujo, hacer políticas explícitas, implementar bucles de retroalimentación, mejorar continuamente.</li>
+            <li><strong>Tablero Kanban:</strong> Columnas = estados del trabajo (To Do → In Progress → Done). Las tarjetas se mueven de izquierda a derecha.</li>
+            <li><strong>WIP Limits:</strong> Limitar el trabajo en curso reduce la multitarea y mejora el flujo. Si una columna está llena, no se puede iniciar nuevo trabajo hasta que algo salga.</li>
+            <li><strong>Métricas:</strong> Lead time (de petición a entrega), Cycle time (de inicio a entrega), Throughput (elementos completados por unidad de tiempo)</li>
+            <li><strong>Sin roles fijos ni sprints:</strong> Más flexible, menos prescriptivo que Scrum.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>🟢 Consideraciones Organizacionales para la Agilidad (Sección 6 de la Guía Práctica)</h3>
+        <ul>
+          <li><strong>Cultura organizacional:</strong> La cultura es el principal obstáculo para adoptar ágil. Organizaciones con cultura de control y jerarquía son menos compatibles con ágil. El PM debe trabajar dentro de la cultura existente mientras impulsa el cambio.</li>
+          <li><strong>Gestión del cambio organizacional (OCM):</strong> Implementar ágil requiere un cambio cultural, no solo de procesos. La resistencia al cambio es predecible y debe gestionarse activamente.</li>
+          <li><strong>Adquisiciones y contratos en Ágil:</strong> Los contratos tradicionales de precio fijo son difíciles de combinar con ágil (los requisitos cambian). Se usan contratos Time & Materials, contratos con techo de precio variable, o contratos colaborativos con incentivos por valor entregado.</li>
+          <li><strong>PMO en un entorno ágil:</strong> La PMO ágil es orientada al valor (no a los procesos), funciona por invitación (apoya en vez de controlar) y es multidisciplinar.</li>
+          <li><strong>Escalado ágil:</strong> Cuando el proyecto es demasiado grande para un solo equipo ágil se usan marcos de escalado: SAFe (Scaled Agile Framework), LeSS (Large Scale Scrum), DAD (Disciplined Agile Delivery). El examen puede mencionarlos de forma general.</li>
+        </ul>
+      </div>
+      <div class="tip">
+        <strong>💡 Para el examen — Contratos:</strong> Una pregunta clásica: "El cliente quiere trabajar con ágil pero exige un precio fijo. ¿Qué recomiendas?" La respuesta de PMI: explica los riesgos de un precio fijo en un entorno de requisitos cambiantes y propón un contrato híbrido o T&M con límite. PMI no dice que sea imposible, dice que el PM debe gestionar las expectativas.
+      </div>
+    </div>
+
+    <!-- SEMANA 10 -->
+    <div class="week-section" id="semana-10">
+      <div class="week-header">
+        <div class="week-badge phase2">SEM. 10<br>16h</div>
+        <div class="week-title">
+          <h2>Herramientas, Técnicas y Entradas/Salidas Clave</h2>
+          <p>PMBOK® 8ª Ed. · Parte II: Secciones 4 y 5 completas</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Herramientas y Técnicas Críticas para el Examen</h3>
+        <table class="ref-table">
+          <thead><tr><th>Herramienta/Técnica</th><th>Para qué se usa</th><th>Lo que tienes que saber</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Método de la Ruta Crítica (CPM)</strong></td><td>Cronograma</td><td>Identificar la secuencia más larga. Actividades en ruta crítica tienen holgura=0. Retrasar cualquier actividad crítica retrasa el proyecto.</td></tr>
+            <tr><td><strong>Fast Tracking</strong></td><td>Comprimir cronograma</td><td>Paralelizar actividades que normalmente serían secuenciales. Aumenta el riesgo. No añade costos.</td></tr>
+            <tr><td><strong>Crashing</strong></td><td>Comprimir cronograma</td><td>Añadir recursos para acelerar. Aumenta costos. Se aplica a las actividades críticas con menor costo marginal de aceleración.</td></tr>
+            <tr><td><strong>WBS (EDT)</strong></td><td>Alcance</td><td>Descomposición del alcance en paquetes de trabajo. El nivel más bajo es el paquete de trabajo. La WBS define qué (entregables), no cómo (actividades).</td></tr>
+            <tr><td><strong>Adelantos y Retrasos</strong></td><td>Cronograma</td><td>Adelanto = solapamiento entre actividades dependientes. Retraso = espera intencional entre actividades.</td></tr>
+            <tr><td><strong>Análisis de árbol de decisiones + EMV</strong></td><td>Riesgos</td><td>EMV = Probabilidad × Impacto en $. Si EMV positivo → oportunidad. Si negativo → amenaza.</td></tr>
+            <tr><td><strong>Diagrama Tornado</strong></td><td>Análisis sensibilidad de riesgos</td><td>Identifica qué variables tienen mayor impacto en el proyecto. El riesgo con la barra más larga tiene el mayor impacto.</td></tr>
+            <tr><td><strong>Planning Poker</strong></td><td>Estimación ágil</td><td>Técnica de estimación por consenso usando cartas Fibonacci. Reduce el sesgo del ancla.</td></tr>
+            <tr><td><strong>Burndown Chart</strong></td><td>Métricas ágiles</td><td>Muestra el trabajo pendiente (eje Y) contra el tiempo (eje X). La línea ideal va de izquierda-arriba a derecha-abajo.</td></tr>
+            <tr><td><strong>Lienzo del Proyecto (Project Canvas)</strong></td><td>Inicio de proyecto</td><td>Una hoja que resume visualmente el proyecto: problema, solución, interesados, riesgos, valor. Equivalente ágil al Project Charter.</td></tr>
+            <tr><td><strong>Análisis Monte Carlo</strong></td><td>Análisis cuantitativo de riesgos</td><td>Simulación probabilística. Da la probabilidad de completar el proyecto en una fecha o coste determinado.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="full-card">
+        <h3>📘 Tipos de Contratos — Adquisiciones (Apéndice X4 del PMBOK)</h3>
+        <table class="ref-table">
+          <thead><tr><th>Tipo de Contrato</th><th>Riesgo para el Comprador</th><th>Cuándo usarlo</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Precio Fijo (FFP)</strong></td><td>Bajo (el vendedor asume el riesgo)</td><td>Requisitos bien definidos y estables</td></tr>
+            <tr><td><strong>Precio Fijo con Ajuste Económico (FP-EPA)</strong></td><td>Bajo-Medio</td><td>Contratos largos con fluctuación de precios</td></tr>
+            <tr><td><strong>Precio Fijo con Incentivos (FPIF)</strong></td><td>Bajo-Medio</td><td>Cuando se quiere incentivar al proveedor a cumplir objetivos</td></tr>
+            <tr><td><strong>Tiempo y Materiales (T&M)</strong></td><td>Alto (el comprador asume el riesgo)</td><td>Alcance no definido, trabajo de corta duración, proyectos ágiles</td></tr>
+            <tr><td><strong>Costo Reembolsable (CR)</strong></td><td>Muy alto</td><td>Alta incertidumbre, proyectos de I+D</td></tr>
+            <tr><td><strong>Costo + Honorarios Fijos (CPFF)</strong></td><td>Alto</td><td>Cuando el alcance es incierto pero se puede estimar el esfuerzo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FASE 3 -->
+    <div class="phase-divider">
+      <h2>Fase 3 — Repaso y Exam Readiness (Semanas 11–13)</h2>
+    </div>
+
+    <!-- SEMANA 11 -->
+    <div class="week-section" id="semana-11">
+      <div class="week-header">
+        <div class="week-badge phase3">SEM. 11<br>16h</div>
+        <div class="week-title">
+          <h2>EVM Profundo + Repaso de Adquisiciones y Entradas/Salidas</h2>
+          <p>PMBOK® · Sección 4 (Entradas/Salidas) · Repaso de Finanzas y Cronograma</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Fórmulas EVM — Repaso Completo con Ejemplos</h3>
+        <div class="formula-box">BAC = Presupuesto Total del Proyecto</div>
+        <div class="formula-box">EV = % completado × BAC</div>
+        <div class="formula-box">CV = EV - AC   |   Si positivo: bajo presupuesto ✅</div>
+        <div class="formula-box">SV = EV - PV   |   Si positivo: adelantado ✅</div>
+        <div class="formula-box">CPI = EV / AC  |   Si >1: eficiente en costos ✅</div>
+        <div class="formula-box">SPI = EV / PV  |   Si >1: adelantado en cronograma ✅</div>
+        <div class="formula-box">EAC = BAC / CPI   (asumiendo tendencia actual se mantiene)</div>
+        <div class="formula-box">ETC = EAC - AC   (cuánto falta por gastar)</div>
+        <div class="formula-box">VAC = BAC - EAC   (variación final esperada)</div>
+        <div class="formula-box">TCPI = (BAC - EV) / (BAC - AC)   (eficiencia necesaria para cumplir BAC)</div>
+        <div class="tip" style="margin-top:12px;">
+          <strong>💡 Ejercicio esencial:</strong> Practica al menos 20 problemas de EVM antes del examen. Es el área donde más personas fallan por errores de cálculo bajo presión. Si TCPI > 1, es más difícil de lo que se está haciendo ahora.
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>📘 Entradas, Salidas y Documentos Clave que Debes Conocer</h3>
+        <table class="ref-table">
+          <thead><tr><th>Documento / Artefacto</th><th>Para qué sirve</th><th>Quién lo crea</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Acta de Constitución (Project Charter)</strong></td><td>Autoriza el proyecto y al PM. Define objetivos de alto nivel, límites, interesados clave.</td><td>Patrocinador (firma) / PM (redacta)</td></tr>
+            <tr><td><strong>Plan para la Dirección del Proyecto (PMP)</strong></td><td>Documento integrador de todos los planes subsidiarios (alcance, cronograma, costo, calidad, etc.).</td><td>PM con el equipo</td></tr>
+            <tr><td><strong>Enunciado del Alcance</strong></td><td>Describe entregables, criterios de aceptación, exclusiones y supuestos.</td><td>PM con equipo y cliente</td></tr>
+            <tr><td><strong>WBS (Estructura de Desglose del Trabajo)</strong></td><td>Descompone el alcance en paquetes de trabajo manejables.</td><td>PM con el equipo</td></tr>
+            <tr><td><strong>Registro de Riesgos</strong></td><td>Lista todos los riesgos identificados con probabilidad, impacto y respuesta planificada.</td><td>PM con el equipo</td></tr>
+            <tr><td><strong>Registro de Interesados</strong></td><td>Información sobre cada interesado: cargo, influencia, intereses, nivel de involucramiento.</td><td>PM</td></tr>
+            <tr><td><strong>Solicitud de Cambio</strong></td><td>Documento formal para solicitar cambios al alcance, cronograma o presupuesto.</td><td>Cualquiera → aprueba el CCB</td></tr>
+            <tr><td><strong>Informe de Desempeño del Trabajo</strong></td><td>Resume el rendimiento del proyecto: EVM, hitos, riesgos, incidentes.</td><td>PM</td></tr>
+            <tr><td><strong>Lecciones Aprendidas</strong></td><td>Conocimiento generado durante el proyecto para mejorar futuros proyectos.</td><td>PM y equipo (todo el ciclo de vida)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SEMANA 12 -->
+    <div class="week-section" id="semana-12">
+      <div class="week-header">
+        <div class="week-badge phase3">SEM. 12<br>16h</div>
+        <div class="week-title">
+          <h2>Repaso de Zonas Débiles + Análisis de Errores</h2>
+          <p>Basado en tus resultados de simulacros. Foco en Ágil, EVM y escenarios situacionales.</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>🎯 Cómo usar esta semana</h3>
+        <ul>
+          <li><strong>Revisa todos los simulacros que has hecho hasta ahora</strong> y agrupa los errores por tema. Necesitas identificar tus 3-5 áreas más débiles.</li>
+          <li><strong>Para cada error:</strong> ¿Entendí mal el concepto? ¿Elegí una respuesta Waterfall donde PMI quería ágil? ¿Error de cálculo? Clasifica el tipo de error para atacarlo correctamente.</li>
+          <li><strong>Haz 30-40 preguntas del área débil</strong> y repite el análisis de errores hasta que tu tasa de acierto en esa área supere el 70%.</li>
+          <li><strong>Repasa el lenguaje de PMI:</strong> "El primer paso que debe dar el PM es…" — casi siempre es identificar/analizar antes de actuar. "Lo más adecuado sería…" — busca la opción más proactiva y preventiva.</li>
+        </ul>
+      </div>
+      <div class="full-card">
+        <h3>🎯 Errores más comunes de candidatos con perfil Waterfall (tu caso)</h3>
+        <ul>
+          <li><strong>Elegir documentar cuando PMI prefiere actuar:</strong> En ágil, ante un problema del equipo, PMI prefiere "organizar una retrospectiva" sobre "escribir un informe".</li>
+          <li><strong>Subestimar la autoridad del Product Owner:</strong> El PO prioriza el backlog, no el PM. Si una historia no está en el backlog, el equipo no la hace, aunque el PM lo pida.</li>
+          <li><strong>Pensar que un contrato de precio fijo es siempre mejor:</strong> En proyectos de alta incertidumbre, forzar un precio fijo genera conflictos. PMI prefiere el contrato que mejor se adapte al contexto.</li>
+          <li><strong>Olvidar que en ágil el equipo decide cómo hacer el trabajo:</strong> El PM no asigna tareas. El equipo se auto-organiza. El PM facilita.</li>
+          <li><strong>Confundir Validar el Alcance con Controlar el Alcance:</strong> Validar = cliente acepta el entregable. Controlar = el PM monitorea las desviaciones del alcance planeado.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SEMANA 13 -->
+    <div class="week-section" id="semana-13">
+      <div class="week-header">
+        <div class="week-badge phase3">SEM. 13<br>16h</div>
+        <div class="week-title">
+          <h2>Simulacros Completos en Condiciones Reales</h2>
+          <p>2-3 exámenes completos de 180 preguntas en 230 minutos</p>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>🎯 Protocolo de simulacros esta semana</h3>
+        <ul>
+          <li><strong>Simula las condiciones reales del examen:</strong> 180 preguntas, 230 minutos, sin interrupciones. Puedes hacer dos pausas de 10 minutos (como en el examen real). Ponte alarmas.</li>
+          <li><strong>Meta mínima para presentarse al examen:</strong> Superar consistentemente el 75% en simulacros completos. Por debajo de eso, estudia una semana más.</li>
+          <li><strong>Simulador recomendado:</strong> PM PrepCast Simulator. Tiene los mejores análisis post-examen y cubre el ECO correctamente.</li>
+          <li><strong>Revisa TODOS los errores, no solo los que se te acerquen.</strong> En el examen real no habrá segunda vuelta.</li>
+          <li><strong>Estrategia de respuesta en el examen:</strong> Lee la pregunta completa. Identifica el tipo de situación (ágil vs. predictivo). Elimina las dos opciones claramente malas. Elige la que PMI preferiría.</li>
+          <li><strong>Últimos días de esta semana:</strong> Descansa. No estudies el día anterior al examen. Revisa solo las fórmulas de EVM y los 4 valores del Manifiesto Ágil.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SEMANA 14 -->
+    <div class="week-section" id="semana-14">
+      <div class="exam-box">
+        <h2>🎓 Semana 14 — Día del Examen</h2>
+        <p><strong>Formato del examen PMP (Pearson VUE):</strong></p>
+        <ul>
+          <li>180 preguntas · 230 minutos · 2 pausas opcionales de 10 minutos</li>
+          <li>Mezcla de preguntas: selección múltiple, respuesta múltiple, arrastra y suelta, punto caliente (hotspot), preguntas de emparejamiento</li>
+          <li>~50% preguntas sobre enfoques predictivos / ~50% sobre enfoques ágiles e híbridos</li>
+          <li>El resultado es inmediato: Needs Improvement, Below Target, Target, Above Target por dominio del ECO</li>
+          <li>Puedes hacerlo online desde casa (ProctorU) o en centro de examen Pearson VUE</li>
+        </ul>
+        <p style="margin-top:14px;"><strong>El día del examen:</strong></p>
+        <ul>
+          <li>Duerme bien la noche anterior. No estudies nada nuevo ese día.</li>
+          <li>Si es online: revisa los requisitos técnicos (cámara, micrófono, entorno limpio) el día anterior.</li>
+          <li>Usa las 2 pausas para respirar y resetear mentalmente.</li>
+          <li>Marca las preguntas que no tienes clara para revisar al final.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- REFERENCIA RÁPIDA -->
+    <div class="week-section" id="ref-rapida">
+      <div class="week-header">
+        <div class="week-badge" style="background:#333;">REF.<br>RÁPIDA</div>
+        <div class="week-title">
+          <h2>Cheat Sheet — Conceptos que más salen en el examen</h2>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>Los 7 Dominios de Desempeño del PMBOK 8ª Ed.</h3>
+        <div class="domain-grid">
+          <div class="domain-pill"><strong>1. Gobernanza</strong>Charter · PMP · Control de cambios · Cierre</div>
+          <div class="domain-pill"><strong>2. Alcance</strong>WBS · Requisitos · Validar · Controlar</div>
+          <div class="domain-pill"><strong>3. Cronograma</strong>CPM · Holgura · Fast Track · Crashing</div>
+          <div class="domain-pill"><strong>4. Finanzas</strong>EVM · Presupuesto · Línea base de costos</div>
+          <div class="domain-pill"><strong>5. Interesados</strong>Registro · Matriz P/I · Plan comms</div>
+          <div class="domain-pill"><strong>6. Recursos</strong>RACI · Tuckman · Conflictos · Motivación</div>
+          <div class="domain-pill"><strong>7. Riesgos</strong>Registro · Análisis P×I · Respuestas · EMV</div>
+        </div>
+      </div>
+      <div class="full-card">
+        <h3>Los 6 Principios del PMBOK 8ª Ed. (de memoria)</h3>
+        <ol style="padding-left:20px;">
+          <li style="margin-bottom:6px;">Adoptar una <strong>visión holística</strong></li>
+          <li style="margin-bottom:6px;">Centrarse en el <strong>valor</strong></li>
+          <li style="margin-bottom:6px;"><strong>Calidad</strong> integrada en procesos y entregables</li>
+          <li style="margin-bottom:6px;">Liderar con <strong>responsabilidad</strong></li>
+          <li style="margin-bottom:6px;">Integrar la <strong>sostenibilidad</strong></li>
+          <li style="margin-bottom:6px;">Construir una cultura de <strong>empoderamiento</strong></li>
+        </ol>
+      </div>
+      <div class="full-card">
+        <h3>Resolución de Conflictos — Orden de preferencia PMI</h3>
+        <ol style="padding-left:20px;">
+          <li style="margin-bottom:6px;"><strong>Colaborar/Confrontar</strong> (win-win, siempre preferida)</li>
+          <li style="margin-bottom:6px;"><strong>Comprometer</strong> (ambas partes ceden algo)</li>
+          <li style="margin-bottom:6px;"><strong>Suavizar</strong> (minimizar diferencias, enfatizar acuerdos)</li>
+          <li style="margin-bottom:6px;"><strong>Forzar</strong> (imponer una decisión — solo si es urgente)</li>
+          <li style="margin-bottom:6px;"><strong>Retirar</strong> (evitar el conflicto — nunca recomendada)</li>
+        </ol>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+</body>
+</html>
