@@ -325,6 +325,7 @@
       <li><a href="#semana-14">Sem. 14 · Día del Examen</a></li>
       <li><a class="phase" href="#">— REFERENCIAS —</a></li>
       <li><a href="#ref-rapida">Referencia Rápida</a></li>
+      <li><a href="#glosario">📖 Glosario de Términos</a></li>
     </ul>
   </nav>
 </div>
@@ -1078,6 +1079,193 @@
         </ol>
       </div>
     </div>
+
+    <!-- GLOSARIO -->
+    <div class="week-section" id="glosario">
+      <div class="week-header">
+        <div class="week-badge" style="background:#4a1a6b;">📖<br>GLOS.</div>
+        <div class="week-title">
+          <h2>Glosario de Términos PMP</h2>
+          <p>Definiciones clave ordenadas por categoría. Términos frecuentes en el simulador de Lledó y en el examen real.</p>
+        </div>
+      </div>
+
+      <!-- BÚSQUEDA -->
+      <div style="margin-bottom:20px;">
+        <input type="text" id="glossarySearch" placeholder="🔍 Buscar término..." oninput="filterGlossary()" style="width:100%;padding:10px 16px;border:1px solid var(--border);border-radius:8px;font-size:14px;color:var(--text);outline:none;font-family:inherit;">
+      </div>
+
+      <!-- CATEGORÍA: MÉTODOS Y FILOSOFÍAS -->
+      <div class="full-card glossary-card" data-category="metodos">
+        <h3>🔧 Métodos, Filosofías y Enfoques</h3>
+
+        <div class="glossary-item" data-terms="kaizen mejora continua incremental">
+          <div class="glossary-term">Kaizen</div>
+          <div class="glossary-def">Filosofía japonesa de <strong>mejora continua incremental y permanente</strong>. El nombre significa "cambio para mejor". Se aplica mejorando pequeñas cosas constantemente en lugar de hacer cambios radicales. En proyectos ágiles se implementa principalmente a través de las <strong>retrospectivas</strong>. No confundir con Lean (que elimina desperdicios) ni con reingeniería de procesos (que implica cambio radical).</div>
+        </div>
+
+        <div class="glossary-item" data-terms="lean desperdicio eficiencia flujo">
+          <div class="glossary-term">Lean</div>
+          <div class="glossary-def">Metodología orientada a <strong>eliminar desperdicios</strong> (actividades que no agregan valor) y optimizar el flujo de trabajo. El <strong>tiempo de valor agregado</strong> en Lean es solo el tiempo de transformación real del producto. Los tipos de desperdicio incluyen: sobreproducción, esperas, transporte innecesario, inventario excesivo, movimiento, defectos y procesamiento innecesario. Se mide con el diagrama de flujo acumulativo (CFD).</div>
+        </div>
+
+        <div class="glossary-item" data-terms="jit just in time inventario">
+          <div class="glossary-term">J.I.T. (Just in Time)</div>
+          <div class="glossary-def">Sistema de producción que busca <strong>reducir inventarios al mínimo</strong> fabricando o entregando materiales justo cuando se necesitan. Elimina el desperdicio de almacenamiento. Requiere una cadena de suministro muy fiable. Si falla un proveedor (ej: huelga de transporte), el sistema queda expuesto porque no hay stock de seguridad.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="tpm mantenimiento productivo total cero defectos accidentes averías">
+          <div class="glossary-term">T.P.M. (Mantenimiento Productivo Total)</div>
+          <div class="glossary-def">Metodología centrada en maximizar la efectividad de los equipos eliminando las <strong>tres ceros: cero accidentes, cero defectos, cero averías</strong>. Se aplica en proyectos de fabricación, plantas industriales y procesos con maquinaria. Implica que todos los empleados participan en el mantenimiento, no solo el departamento técnico.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="teoría restricciones limitaciones cuello botella goldratt">
+          <div class="glossary-term">Teoría de las Restricciones (TOC)</div>
+          <div class="glossary-def">Metodología de <strong>gestión de sistemas</strong> que identifica el cuello de botella más importante (la restricción que limita el rendimiento del sistema) y lo optimiza. Creada por Eliyahu Goldratt. El principio central: la velocidad del sistema está determinada por su elemento más lento. Se trabaja identificando, explotando, subordinando y elevando la restricción hasta que deja de serlo.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="refactorizar refactoring código deuda técnica">
+          <div class="glossary-term">Refactorizar</div>
+          <div class="glossary-def">En desarrollo de software, <strong>reestructurar el código existente sin cambiar su comportamiento externo</strong> para mejorar su legibilidad, mantenibilidad y eficiencia. Se hace para reducir la deuda técnica acumulada. No añade nuevas funcionalidades, solo mejora la estructura interna. Es una práctica clave de XP (Extreme Programming) para mantener el costo de cambio constante.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="deuda técnica costo cambio calidad código atajos">
+          <div class="glossary-term">Deuda Técnica</div>
+          <div class="glossary-def">Consecuencia de tomar <strong>atajos en el desarrollo</strong> (código mal estructurado, falta de documentación, decisiones subóptimas) para entregar más rápido. Con el tiempo, estos atajos generan "interés": cada cambio posterior es más costoso porque hay que trabajar sobre una base deficiente. Los costos de cambio crecen a tasa creciente. Se resuelve refactorizando y aplicando excelencia técnica continua desde el inicio.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="obsolescencia planeada estrategia producto vida útil">
+          <div class="glossary-term">Obsolescencia Planeada</div>
+          <div class="glossary-def">Estrategia de fabricantes que consiste en <strong>diseñar deliberadamente productos con una vida útil limitada</strong> para que los consumidores deban reemplazarlos. Puede ser funcional (el producto deja de funcionar), tecnológica (sale un modelo superior) o estética (cambia el diseño). No confundir con deuda técnica, que es un problema no buscado.</div>
+        </div>
+      </div>
+
+      <!-- CATEGORÍA: HERRAMIENTAS Y TÉCNICAS -->
+      <div class="full-card glossary-card" data-category="herramientas">
+        <h3>📊 Herramientas y Técnicas</h3>
+
+        <div class="glossary-item" data-terms="monte carlo simulación riesgos probabilidad cronograma costo">
+          <div class="glossary-term">Simulación de Monte Carlo</div>
+          <div class="glossary-def">Técnica de <strong>análisis cuantitativo de riesgos</strong> que realiza miles de simulaciones del proyecto usando rangos de valores (optimista, probable, pesimista) para cada variable. Produce una distribución de probabilidad de resultados. Los tres resultados principales son: (1) duración más probable del proyecto, (2) probabilidad de cumplir una fecha determinada, (3) probabilidad de cumplir el presupuesto. También calcula el <strong>índice de criticidad</strong>: porcentaje de simulaciones en que una actividad aparece en la ruta crítica.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="pareto diagrama 80 20 defectos causas priorización">
+          <div class="glossary-term">Diagrama de Pareto</div>
+          <div class="glossary-def">Herramienta de <strong>control de calidad</strong> que representa las causas de problemas ordenadas de mayor a menor frecuencia en barras, con una curva acumulada superpuesta. Aplica el principio 80/20: el 80% de los problemas proviene del 20% de las causas. Permite priorizar qué causas atacar primero para obtener el mayor impacto con el menor esfuerzo. Es una herramienta de <strong>análisis de defectos</strong>, no de estimación.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="delphi estimación anónima expertos consenso banda ancha">
+          <div class="glossary-term">Técnica Delphi / Delphi de Banda Ancha</div>
+          <div class="glossary-def">Técnica de <strong>recopilación de opiniones de expertos de forma anónima</strong> en múltiples rondas para llegar a consenso. El <strong>Delphi clásico</strong>: rondas anónimas sin discusión. El <strong>Delphi de banda ancha</strong>: añade discusión grupal entre rondas anónimas, lo que permite que todos participen igualmente independientemente de su personalidad. Ideal cuando hay miedo a represalias o cuando personalidades dominantes pueden sesgar el resultado.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="diagrama de redes actividades dependencias secuencia ruta crítica">
+          <div class="glossary-term">Diagrama de Redes (Network Diagram)</div>
+          <div class="glossary-def">Representación visual de las <strong>actividades del proyecto y sus dependencias</strong>. Permite identificar la ruta crítica (la secuencia de actividades más larga que determina la duración mínima del proyecto), calcular holguras (float), y aplicar técnicas de compresión. Los tipos de dependencia son: Fin-Inicio (FS), Inicio-Inicio (SS), Fin-Fin (FF) e Inicio-Fin (SF). La holgura total indica cuántos días puede retrasarse una actividad sin afectar la fecha de fin del proyecto.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="diagrama hitos fechas clave entregables cronograma">
+          <div class="glossary-term">Diagrama de Hitos</div>
+          <div class="glossary-def">Versión simplificada del cronograma que muestra solo los <strong>eventos significativos con duración cero</strong> (hitos). Comunica fechas clave del proyecto a interesados que no necesitan ver el detalle de cada actividad. Los hitos marcan la finalización de fases, entrega de entregables críticos o puntos de decisión importantes. No confundir con el diagrama de Gantt (que muestra todas las actividades con su duración).</div>
+        </div>
+
+        <div class="glossary-item" data-terms="wbs edt estructura desglose trabajo entregables paquetes">
+          <div class="glossary-term">Estructura de Desglose del Trabajo (WBS / EDT)</div>
+          <div class="glossary-def">Descomposición jerárquica visual del <strong>alcance total del proyecto en entregables manejables</strong>. Cada nivel inferior descompone el trabajo del nivel superior. El nivel más bajo se llama <strong>paquete de trabajo</strong>. La WBS es el punto de partida para la estimación de costos, planificación de recursos y desarrollo del cronograma. No incluye actividades con fechas, solo entregables. Se complementa con el <strong>diccionario de la WBS</strong> que detalla cada paquete.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="crystal metodología ágil familia">
+          <div class="glossary-term">Crystal</div>
+          <div class="glossary-def">Familia de <strong>metodologías ágiles</strong> creadas por Alistair Cockburn. Se caracteriza por adaptarse según el tamaño y criticidad del proyecto: Crystal Clear (≤8 personas), Crystal Yellow, Crystal Orange, Crystal Red. Se enfoca en las personas, la interacción y la entrega frecuente. No es una técnica de estimación. Es más flexible que Scrum y no prescribe prácticas específicas.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="peine roto perfil especialista disciplinas múltiples">
+          <div class="glossary-term">Perfil Peine Roto</div>
+          <div class="glossary-def">Perfil de profesional con <strong>profundidad en múltiples disciplinas</strong>, representado visualmente como un peine con varios dientes. A diferencia del perfil T (profundidad en una especialidad + amplitud general) o el perfil I (solo profundidad en una disciplina), el peine roto combina múltiples especializaciones. No es un perfil estándar reconocido ampliamente en PMI; es terminología específica de Lledó.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="t-shirt sizing tallas estimación historias usuario">
+          <div class="glossary-term">T-shirt Sizing (Estimación por Tallas)</div>
+          <div class="glossary-def">Técnica de <strong>estimación relativa</strong> en proyectos ágiles donde las historias de usuario se clasifican por tallas de camiseta: XS, S, M, L, XL, XXL. Es más rápida que el planning poker y útil para estimaciones iniciales de alto nivel. No da valores numéricos precisos, sino categorías relativas. Se usa frecuentemente en el refinamiento del backlog para clasificar antes de hacer estimaciones más detalladas.</div>
+        </div>
+      </div>
+
+      <!-- CATEGORÍA: ADQUISICIONES -->
+      <div class="full-card glossary-card" data-category="adquisiciones">
+        <h3>📋 Documentos de Adquisiciones</h3>
+
+        <div class="glossary-item" data-terms="rfp solicitud propuesta vendedor solución">
+          <div class="glossary-term">RFP — Solicitud de Propuesta (Request for Proposal)</div>
+          <div class="glossary-def">Documento que solicita a proveedores potenciales que presenten <strong>propuestas detalladas de cómo resolverían un problema o necesidad</strong>, incluyendo su enfoque, metodología, experiencia y precio. Se usa cuando el comprador no sabe exactamente cómo quiere que se resuelva el problema y quiere evaluar diferentes enfoques. Da flexibilidad al vendedor para proponer soluciones creativas. Ejemplo: "Necesitamos un sistema de gestión de proyectos, proponga cómo lo desarrollaría."</div>
+        </div>
+
+        <div class="glossary-item" data-terms="rfq solicitud oferta precio cotización cantidad">
+          <div class="glossary-term">RFQ — Solicitud de Oferta (Request for Quotation)</div>
+          <div class="glossary-def">Documento que solicita a proveedores que cotizen el <strong>precio de productos o servicios bien definidos</strong>. Se usa cuando el comprador sabe exactamente qué quiere y solo necesita saber el precio. El criterio de selección es principalmente el coste. Ejemplo: "Necesitamos 500 licencias de software X, ¿cuánto cobran?" No hay margen para proponer soluciones alternativas.</div>
+        </div>
+
+        <div class="glossary-item" data-terms="ifb invitación licitación especificaciones técnicas dbb">
+          <div class="glossary-term">IFB — Invitación a la Licitación (Invitation for Bid)</div>
+          <div class="glossary-def">Documento formal que invita a contratistas a presentar ofertas para realizar un trabajo con <strong>especificaciones técnicas completamente definidas</strong>. Se usa en el modelo DBB (Design-Bid-Build): el cliente contrata expertos para crear los documentos técnicos detallados, luego llama a licitación y finalmente construye. El criterio de selección suele ser el precio más bajo entre los que cumplen las especificaciones. Común en obras públicas y construcción.</div>
+        </div>
+      </div>
+
+      <!-- CATEGORÍA: ÁGIL -->
+      <div class="full-card glossary-card" data-category="agil">
+        <h3>🟢 Conceptos Ágiles Específicos</h3>
+
+        <div class="glossary-item" data-terms="tas tiempo acelerado valor sesión estimación">
+          <div class="glossary-term">TAS (Time-boxed Agile Session)</div>
+          <div class="glossary-def">Sesión de trabajo ágil con <strong>tiempo fijo preestablecido</strong>. El concepto de time-box es fundamental en ágil: las ceremonias tienen una duración máxima que no se extiende. Daily = 15 min, Sprint Planning = 8h (sprint de 4 sem), Sprint Review = 4h, Retrospectiva = 3h. El time-boxing crea urgencia, mejora el foco y evita que las reuniones se prolonguen innecesariamente. Si el tiempo se acaba, se toman decisiones con la información disponible.</div>
+        </div>
+      </div>
+
+    </div><!-- /glosario -->
+
+    <style>
+      .glossary-item {
+        border-bottom: 1px solid var(--border);
+        padding: 14px 0;
+      }
+      .glossary-item:last-child { border-bottom: none; }
+      .glossary-term {
+        font-weight: 700;
+        color: var(--primary);
+        font-size: 15px;
+        margin-bottom: 6px;
+      }
+      .glossary-def {
+        font-size: 14px;
+        line-height: 1.65;
+        color: var(--text);
+      }
+      .glossary-item.hidden { display: none; }
+      .full-card.glossary-card.hidden { display: none; }
+      #glossarySearch:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(46,125,158,0.15);
+      }
+    </style>
+
+    <script>
+      function filterGlossary() {
+        const query = document.getElementById('glossarySearch').value.toLowerCase().trim();
+        const items = document.querySelectorAll('.glossary-item');
+        const cards = document.querySelectorAll('.full-card.glossary-card');
+
+        items.forEach(item => {
+          const terms = item.getAttribute('data-terms') || '';
+          const text = item.textContent.toLowerCase();
+          const match = !query || text.includes(query) || terms.includes(query);
+          item.classList.toggle('hidden', !match);
+        });
+
+        cards.forEach(card => {
+          const visibleItems = card.querySelectorAll('.glossary-item:not(.hidden)');
+          card.classList.toggle('hidden', visibleItems.length === 0 && query !== '');
+        });
+      }
+    </script>
 
   </div><!-- /content -->
 </div><!-- /main -->
